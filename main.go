@@ -3,7 +3,9 @@ package main
 import (
 	"fmt"
 	"log"
+	"math"
 	"os"
+	"strconv"
 
 	"github.com/go-gota/gota/dataframe"
 	"github.com/go-gota/gota/series"
@@ -60,10 +62,21 @@ func main() {
 	// Itera sobre cada linha do DataFrame e a imprime
 	for i, row := range sorted.Records() {
 		// Imprime o índice da linha e os dados da linha
-		fmt.Printf("Linha %d: %v\n", i, row)
+		if i == 0 {
+			fmt.Printf("Linha %d: %s\n", i, row)
+		} else {
+			num, _ := strconv.ParseFloat(row[1], 64)
+			fmt.Println(math.Round(num))
+		}
 	}
 
+	// // Itera sobre cada linha do DataFrame e a imprime
+	// for i, row := range sorted.Records() {
+	// 	// Imprime o índice da linha e os dados da linha
+	// 	fmt.Printf("Linha %d: %v\n", i, row)
+	// }
+
 	// Adicionalmente, imprimir o DataFrame completo para verificar os dados
-	fmt.Println("DataFrame completo agrupado e ordenado:")
-	fmt.Println(sorted)
+	// fmt.Println("DataFrame completo agrupado e ordenado:")
+	// fmt.Println(sorted)
 }
